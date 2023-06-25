@@ -1,9 +1,9 @@
 <?php
 
-class Conexao
+class ConexaoDAO
 {
       private $mysql_server = 'localhost';
-      private $nome_banco = 'trabalhoweb';
+      private $nome_banco = 'trabalhodevweb';
       private $usuario = 'root';
       private $senha = ''; 
       private $conexao;

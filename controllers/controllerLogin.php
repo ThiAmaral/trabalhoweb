@@ -1,8 +1,9 @@
 <?php
     echo "Login";
-    require_once('../dao/conexao.inc.php');
+    require_once('../dao/conexaoDAO.php');
+
     function efetuarLogin($usuario, $senha){
-        $con = new Conexao();
+        $con = new ConexaoDAO();
         $conexao = $con->getConexao();
         $sql = $conexao->prepare("select * from usuarios where login = :usr and senha = :pass");
         $usuario = strtolower($usuario); // padronizando o texto digitado em minúsculo para ambos, login e senha
