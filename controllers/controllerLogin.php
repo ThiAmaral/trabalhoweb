@@ -1,14 +1,14 @@
 <?php
-    echo "Login";
+
     require_once('../dao/conexaoDAO.php');
 
     function efetuarLogin($usuario, $senha){
         $con = new ConexaoDAO();
         $conexao = $con->getConexao();
-        $sql = $conexao->prepare("select * from usuarios where login = :usr and senha = :pass");
-        $usuario = strtolower($usuario); // padronizando o texto digitado em minúsculo para ambos, login e senha
-        $senha = strtolower($senha);
-        $sql->bindValue(':usr', $login);
+        $sql = $conexao->prepare("select * from usuarios where email = :usr and senha = :pass");
+        $usuario = ($usuario);
+        $senha = ($senha);
+        $sql->bindValue(':usr', $usuario);
         $sql->bindValue(':pass', $senha);
         $sql->execute();
 
@@ -20,21 +20,26 @@
             return false;
     }
 
-    $tipo = $_REQUEST['pTipo'];
-    $usuario = $_REQUEST['pUsuario'];
-    $senha = $_REQUEST['pSenha'];
-   
-    if ($tipo == '1'){
-        $logado = efetuarLogin($usuario, $senha);
-        if($logado){// se achou o usuário, a função retorna true
+    $usuario = $_REQUEST['pAcessoUsuario'];
+    $senha = $_REQUEST['pAcessoSenha'];
+    
+    $logado = efetuarLogin($usuario, $senha);
+    if($logado){// se achou o usuário, a função retorna true
+        if(isset($_REQUEST['lembrarSenha'])){
             session_start();
             $_SESSION['logado'] = true;
-            $_SESSION['tipousuario'] = '1';
-            header("Location: ../views/index.php");
+            $_SESSION['pAcessoUsuario'] = $usuario;
         }
         else{
-            header("Location: ../views/formLogin.php?erro=1");
+            session_start();
+            $_SESSION['logado'] = true;
+            $_SESSION['pAcessoUsuario'] = $usuario;
         }
+        header("Location: ../index.php");
     }
+    else{
+        header("Location: ../views/formLogin.php?erro=1");
+    }
+    
 
 ?>

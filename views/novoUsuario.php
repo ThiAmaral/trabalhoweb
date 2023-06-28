@@ -1,7 +1,7 @@
 <?php
   require_once './cabecalho.php'
 ?>
-<form class="container card my-2 py-2" action="../controllers/controllerCadastroUsuario.php" method="POST">
+<form class="container card my-2 py-2" action="../controllers/controllerUsuario.php" method="POST">
   <div class="mb-3">
     <label for="pNome" class="form-label">Nome Completo</label>
     <input type="text" class="form-control" id="pNome" name="pNome">
@@ -30,6 +30,7 @@
     <input type="checkbox" class="form-check-input" id="reberNotificacoes" name="reberNotificacoes">
     <label class="form-check-label" for="reberNotificacoes">Gostaria de receber e-mails com novidades e promoções!</label>
   </div>
+  <input type="hidden" name="opcao" value="1">
   <input type="submit" class="btn btn-primary" value="Cadastrar"></button>
 </form>
 <?php

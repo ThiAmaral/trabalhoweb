@@ -1,3 +1,9 @@
+<?php
+
+  session_start();
+  $logado = $_SESSION['logado'];
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,13 +31,17 @@
             <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sobre</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">Serviços</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contato</a>
+          </li>
+          <li class="nav-item">
+          <?php if($logado) :?>
+            <a class="nav-link" href="views/perfilUsuario.php">Perfil</a>
+          <?php else : ?>
+            <a class="nav-link" href="#">Cadastre-se</a>
+          <?php endif ; ?>
           </li>
         </ul>
       </div>

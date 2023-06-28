@@ -1,5 +1,5 @@
 <?php
-     require_once 'conexaoDAO.php';
+     require_once './conexaoDAO.php';
     //  require_once '../classes/usuario.php';
 
     class UsuariosDao{
@@ -52,8 +52,10 @@
         return $lista;
     }
 
-    public function getUsuario($id){
-        $rs = $this->con->query("SELECT * FROM usuarios");
+    public function getUsuario($email){
+        $rs = $this->con->query("SELECT * FROM usuarios where email := email");
+        
+        $sql->bindValue('email', $email);
 
         $lista = array();
         while($row = $rs->fetch(PDO::FETCH_OBJ)){
